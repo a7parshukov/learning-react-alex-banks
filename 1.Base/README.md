@@ -48,7 +48,67 @@ const logCompliment = function() {
   console.log("Hello");
 }
 ```
+Пример объявления стрелочной функции:
+```javascript
+const logHello = () => console.log("Hello");
+logHello();
+```
 
 **Отличие**: вызывать функцию можно до её объявления.
 Функциональное выражение можно вызывать только после объявления. Если вызвать до, то будет ошибка `ReferenceError: Cannot access 'logCompliment' before initialization`.
+Аналогично и для **стрелочной функции** - вызывать функцию ДО её объявления нельзя.
 
+**Значения по умолчанию** для функций можно сделать прямо в объявлении функции:
+```javascript
+function logHello(name="Monk", text="I`m blind.") {
+  return `Hello ${name}, is VSCode, ${text}`
+}
+```
+Если значения есть:
+```javascript
+console.log(logHello("John", "how are you?"));
+// Hello John, is VSCode, how are you?
+```
+
+Если значений нет:
+```javascript
+console.log(logHello());
+// Hello Monk, is VSCode, I`m blind
+```
+
+Стрелочные функции и ограничения видимости:
+```javascript
+const tahoe = {
+  mountains: ["Kirkwood","Squaw","Alpine","Heavenly","Northstar"],
+  print: function(delay=1000) {
+    setTimeout(function() {
+      console.log(this.mountains.join(","));
+    }, delay);
+  }
+}
+tahoe.print(); // TypeError: Cannot read properties of undefined (reading 'join')
+console.log(this) // Window {}
+```
+Если заменить setTimeout на стрелочную функцию, то все заработает:
+```javascript
+const tahoe = {
+  mountains: ["Kirkwood","Squaw","Alpine","Heavenly","Northstar"],
+  print: function(delay=1000) {
+    setTimeout(() => {
+      console.log(this.mountains.join(", "));
+    }, delay);
+  }
+}
+tahoe.print(); // Kirkwood, Squaw, Alpine, Heavenly, Northstar
+```
+
+## Объекты
+Чтобы правильно вернуть (создать) объект нужно:
+```javascript
+const person = (firstName, lastName) => ({
+  first: firstName,
+  last: lastName
+})
+console.log(person("Brad", "Janson")); // { first: 'Brad', last: 'Janson' }
+```
+Если круглых скобок нет, то будет `SyntaxError: Unexpected token ':'`
