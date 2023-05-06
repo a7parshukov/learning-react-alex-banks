@@ -75,7 +75,7 @@ console.log(logHello("John", "how are you?"));
 console.log(logHello());
 // Hello Monk, is VSCode, I`m blind
 ```
-
+## Стрелочные функции:
 Стрелочные функции и ограничения видимости:
 ```javascript
 const tahoe = {
