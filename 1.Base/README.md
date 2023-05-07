@@ -120,6 +120,40 @@ function addMany(a, b, c) {
 }
 console.log(addMany.call(obj, 1, 2, 3)); // 8
 ```
+Рассмотрим на реальном примере - **создание цепочек конструкторов объектов**
+```javascript
+function Item(name, price) {
+  this.name = name,
+  this.price = price,
+  this.description = `This is ${this.name}, price ${this.price}`
+}
+function Car(name, price) {
+  Item.call(this, name, price)
+}
+function Fruit(name, price) {
+  Item.call(this, name, price)
+}
+const bmw = new Car("BMW", 10000);
+console.log(bmw.description); // This is BMW, price 10000
+const banana = new Fruit("Banana", 10);
+console.log(banana.description); // This is Banana, price 10
+```
+Или пример - **вызов анонимной функции**
+```javascript
+const queue = [
+  { name: "Matt" },
+  { name: "Jack" }
+];
+
+for (let i = 0; i < queue.length; i++) {
+  (function(i) {
+    this.displayInfo = function() {
+      console.log(`Position ${i}: ${this.name}`);
+    }
+    this.displayInfo();
+  }).call(queue[i], i);
+}
+```
 
 2. Метод **apply()** привязывает массив значений:
 ```javascript
@@ -133,6 +167,21 @@ function add(a, b, c) {
 
 console.log(add.apply(obj, [1, 2, 3])); // 8
 ```
+
+Реальная задача - добавление одного массива к другому:
+```javascript
+const num1 = [1, 2, 3];
+const num2 = [4, 5, 6];
+num1.push.apply(num1, num2);
+console.log(num1); // [ 1, 2, 3, 4, 5, 6 ]
+console.log(num2); // [4, 5, 6]
+```
+В целом это можно провернуть и через `concat()`:
+```javascript
+const newNum = num1.concat(num2);
+console.log(newNum);
+```
+
 3. Метод **bind()** привязывает значения и возвращает функцию:
 ```javascript
 const obj = {
@@ -146,6 +195,22 @@ function add(a, b) {
 console.log(add.bind(obj, 1, 2)); // результата не будет - [Function: bound add]
 const newAdd = add.bind(obj, 1, 2);
 console.log(newAdd()); // 5 - bind возвращает функцию. Её надо вызвать!
+```
+
+В реальных задачах, `bind()` широко применяется в работе с `SetTimeout()`:
+```javascript
+let person = {
+  name: "Jhon",
+  getName: function() {
+    console.log(this.name);
+  }
+}
+globalThis.setTimeout(person.getName, 1000); // undefined
+```
+Чтобы this привязался не к глобальному объекту, а к конкретному объекту, привяжем через `bind()`:
+```javascript
+let func = person.getName.bind(person);
+setTimeout(func, 1000); // Jhon
 ```
 
 ## Объекты
