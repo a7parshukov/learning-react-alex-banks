@@ -102,6 +102,52 @@ const tahoe = {
 tahoe.print(); // Kirkwood, Squaw, Alpine, Heavenly, Northstar
 ```
 
+## Применение bind(), apply(), call() для связки контекста this
+Как применять методы одного объекта к другому объекту? Рассматриваем три метода:
+1. Метод **call()** привязывает аргументы:
+```javascript
+const obj = {
+  num: 2
+}
+
+function addOne(a) {
+  return this.num + a
+}
+console.log(addOne.call(obj, 5)); // 7
+
+function addMany(a, b, c) {
+  return this.num + a + b + c;
+}
+console.log(addMany.call(obj, 1, 2, 3)); // 8
+```
+
+2. Метод **apply()** привязывает массив значений:
+```javascript
+const obj = {
+  num: 2
+}
+
+function add(a, b, c) {
+  return this.num + a + b + c;
+}
+
+console.log(add.apply(obj, [1, 2, 3])); // 8
+```
+3. Метод **bind()** привязывает значения и возвращает функцию:
+```javascript
+const obj = {
+  num: 2
+}
+
+function add(a, b) {
+  return this.num + a + b;
+}
+
+console.log(add.bind(obj, 1, 2)); // результата не будет - [Function: bound add]
+const newAdd = add.bind(obj, 1, 2);
+console.log(newAdd()); // 5 - bind возвращает функцию. Её надо вызвать!
+```
+
 ## Объекты
 Чтобы правильно вернуть (создать) объект нужно:
 ```javascript

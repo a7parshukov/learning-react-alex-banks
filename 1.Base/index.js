@@ -69,13 +69,47 @@
 // tahoe.print(); // Kirkwood, Squaw, Alpine, Heavenly, Northstar
 
 // иной вариант:
-const tahoe = {
-  resorts: ["Kirkwood", "Squaw", "Alpine", "Heavenly", "Northstar"],
-  print: function (delay = 1000) {
-    setTimeout(function () {
-      console.log(this.resorts.join(", "))
-    }.bind(this), delay)
+// const tahoe = {
+//   resorts: ["Kirkwood", "Squaw", "Alpine", "Heavenly", "Northstar"],
+//   print: function (delay = 1000) {
+//     setTimeout(function () {
+//       console.log(this.resorts.join(", "))
+//     }.bind(this), delay)
 
-  }
+//   }
+// }
+// tahoe.print()
+
+
+// const obj = {
+//   num: 2
+// }
+// function addOne(a) {
+//   return this.num + a
+// }
+// console.log(addOne.call(obj, 5));
+// function addMany(a, b, c) {
+//   return this.num + a + b + c;
+// }
+// console.log(addMany.call(obj, 1, 2, 3))
+
+
+// const obj = {
+//   num: 2
+// }
+// function add(a, b, c) {
+//   return this.num + a + b + c;
+// }
+// console.log(add.apply(obj, [1, 2, 3]));
+
+const obj = {
+  num: 2
 }
-tahoe.print()
+
+function add(a, b) {
+  return this.num + a + b;
+}
+
+console.log(add.bind(obj, 1, 2)); // результата не будет - [Function: bound add]
+const newAdd = add.bind(obj, 1, 2);
+console.log(newAdd()); // 5 - bind возвращает функцию. Её надо вызвать!
