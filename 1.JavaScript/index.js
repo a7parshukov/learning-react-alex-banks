@@ -205,3 +205,29 @@
 
 // let funcUser = sayHi.bind(user);
 // setTimeout(funcUser, 1000); // Привет Mike
+
+
+const sandwich = {
+  bread: "dutch crunch",
+  meat: "tuna",
+  cheese: "swiss",
+  toppings: ["lettuce", "tomato", "mustard"]
+}
+
+let { bread, meat } = sandwich;
+console.log(bread); // dutch crunch
+console.log(meat); // tuna
+
+bread = "new bread";
+meat = "new meat";
+console.log(bread); // new bread
+console.log(meat); // new meat
+console.log(sandwich);
+/*
+{
+  bread: 'dutch crunch',
+  meat: 'tuna',
+  cheese: 'swiss',
+  toppings: [ 'lettuce', 'tomato', 'mustard' ]
+}
+*/
