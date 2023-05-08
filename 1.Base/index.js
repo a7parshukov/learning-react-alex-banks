@@ -163,3 +163,45 @@
 // globalThis.setTimeout(person.getName, 1000); // undefined
 // let func = person.getName.bind(person);
 // setTimeout(func, 1000); // Jhon
+
+// let user = {
+//   firstName: "Mike",
+//   sayHi() {
+//     console.log(`Привет ${this.firstName}`);
+//   }
+// };
+// setTimeout(user.sayHi, 1000); // Привет undefined
+// setTimeout(user.sayHi(), 1000); // Привет Mike. Но - TypeError [ERR_INVALID_ARG_TYPE]: The "callback" argument must be of type function. Received undefined
+
+// let user = {
+//   firstName: "Mike",
+//   sayHi() {
+//     console.log(`Привет ${this.firstName}`);
+//   }
+// };
+// setTimeout(() => user.sayHi(), 1000) // 
+// user.sayHi = function() {
+//   console.log("Изменили значение")
+// }
+// // Итого: Изменили значение
+
+
+// let user = {
+//   firstName: "Mike",
+//   sayHi() {
+//     console.log(`Привет ${this.firstName}`);
+//   }
+// };
+// let funcUser = user.sayHi.bind(user);
+// setTimeout(funcUser, 1000); // Привет Mike
+
+// let user = {
+//   firstName: "Mike",
+// }
+
+// function sayHi() {
+//   console.log(`Hello ${this.firstName}`)
+// }
+
+// let funcUser = sayHi.bind(user);
+// setTimeout(funcUser, 1000); // Привет Mike

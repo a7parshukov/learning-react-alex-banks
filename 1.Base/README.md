@@ -1,4 +1,4 @@
-# JAVASCRIPT для REACT
+# JAVASCRIPT
 
 ## Объявление переменных
 Пример с **var**:
@@ -100,6 +100,76 @@ const tahoe = {
   }
 }
 tahoe.print(); // Kirkwood, Squaw, Alpine, Heavenly, Northstar
+```
+
+## Потеря this
+При передаче методов объекта в качестве колбэка (например `setTimeout()`) возникает проблема потери `this`.
+```javascript
+let user = {
+  firstName: "Mike",
+  sayHi() {
+    console.log(`Привет ${this.firstName}`);
+  }
+};
+setTimeout(user.sayHi, 1000); // Привет undefined
+```
+Кстати, можно попытаться вызвать функцию сразу в колбэке:
+```javascript
+setTimeout(user.sayHi(), 1000); // Привет Mike. 
+// Но - TypeError [ERR_INVALID_ARG_TYPE]: The "callback" argument must be of type function. Received undefined
+```
+Решение 1 - **использовать функцию-обёртку**
+```javascript
+let user = {
+  firstName: "Mike",
+  sayHi() {
+    console.log(`Привет ${this.firstName}`);
+  }
+};
+
+setTimeout(function() {
+  user.sayHi()
+}, 1000) // Привет Mike
+```
+**Минусы данного решения** в течении таймаута можно перезаписать значение:
+```javascript
+let user = {
+  firstName: "Mike",
+  sayHi() {
+    console.log(`Привет ${this.firstName}`);
+  }
+};
+setTimeout(() => user.sayHi(), 1000) // 
+user.sayHi = function() {
+  console.log("Изменили значение")
+}
+// Изменили значение - пока функция выполнялась, значение внутри изменилось.
+```
+
+Решение 2 - **использование метода bind()**
+Можно привязать внутренний метод:
+```javascript
+let user = {
+  firstName: "Mike",
+  sayHi() {
+    console.log(`Привет ${this.firstName}`);
+  }
+};
+let funcUser = user.sayHi.bind(user);
+setTimeout(funcUser, 1000); // Привет Mike
+```
+Так же можно привязать и стороннюю функцию:
+```javascript
+let user = {
+  firstName: "Mike",
+}
+
+function sayHi() {
+  console.log(`Hello ${this.firstName}`)
+}
+
+let funcUser = sayHi.bind(user);
+setTimeout(funcUser, 1000); // Привет Mike
 ```
 
 ## Применение bind(), apply(), call() для связки контекста this
