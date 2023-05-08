@@ -207,27 +207,84 @@
 // setTimeout(funcUser, 1000); // Привет Mike
 
 
-const sandwich = {
-  bread: "dutch crunch",
-  meat: "tuna",
-  cheese: "swiss",
-  toppings: ["lettuce", "tomato", "mustard"]
-}
+// const sandwich = {
+//   bread: "dutch crunch",
+//   meat: "tuna",
+//   cheese: "swiss",
+//   toppings: ["lettuce", "tomato", "mustard"]
+// }
 
-let { bread, meat } = sandwich;
-console.log(bread); // dutch crunch
-console.log(meat); // tuna
+// let { bread, meat } = sandwich;
+// console.log(bread); // dutch crunch
+// console.log(meat); // tuna
 
-bread = "new bread";
-meat = "new meat";
-console.log(bread); // new bread
-console.log(meat); // new meat
-console.log(sandwich);
-/*
-{
-  bread: 'dutch crunch',
-  meat: 'tuna',
-  cheese: 'swiss',
-  toppings: [ 'lettuce', 'tomato', 'mustard' ]
-}
-*/
+// bread = "new bread";
+// meat = "new meat";
+// console.log(bread); // new bread
+// console.log(meat); // new meat
+// console.log(sandwich);
+// /*
+// {
+//   bread: 'dutch crunch',
+//   meat: 'tuna',
+//   cheese: 'swiss',
+//   toppings: [ 'lettuce', 'tomato', 'mustard' ]
+// }
+// */
+
+// const lordify = regularPerson => {
+//   console.log(`${regularPerson.firstName} of Canterbury`);
+// }
+
+// const regularPerson = {
+//   firstName: "Bill",
+//   lastName: "Wilson"
+// }
+
+// lordify(regularPerson); // Bill of Canterbury
+
+
+// const lordify = ({ firstName }) => {
+//   console.log(`${firstName} of Canterbury`);
+// }
+
+// const regularPerson = {
+//   firstName: "Bill",
+//   lastName: "Wilson"
+// }
+
+// lordify(regularPerson); // Bill of Canterbury
+
+
+// const regularPerson = {
+//   firstName: "Bill",
+//   lastName: "Wilson",
+//   spouse: {
+//     firstName: "Phil",
+//     lastName: "Wilson"
+//   }
+// }
+
+// const lordify = ({ spouse: { firstName } }) => {
+//   console.log(`${firstName} of Canterbury`);
+// }
+
+// lordify(regularPerson); // Phil of Canterbury
+
+
+
+// const [firstAnimal] = ["Horse", "Mouse", "Cat"];
+// console.log(firstAnimal); // Horse
+
+// const [, , thirdAnimal] = ["Horse", "Mouse", "Cat"];
+// console.log(thirdAnimal); // Cat
+
+// const name = "Tallac";
+// const elevation = 9738;
+// const print = function() {
+//   console.log(`Mt. ${this.name} is ${this.elevation} feet tall.`)
+// }
+// const funHike = { name, elevation, print }
+// funHike.print(); // Mt. Tallac is 9738 feet tall.
+
+
