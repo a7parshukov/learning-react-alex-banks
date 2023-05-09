@@ -105,6 +105,27 @@ const funHike = { name, elevation, print }
 funHike.print(); // Mt. Tallac is 9738 feet tall.
 ```
 
+**Объединение объектов** при помощи spread оператора:
+```javascript
+const morning = {
+  breakfast: "oatmeal",
+  lunch: "peanut butter and jelly"
+}
+const dinner = "mac and cheese"
+
+const newObj = {
+  ...morning,
+  dinner
+}
+console.log(newObj);
+/* {
+  breakfast: 'oatmeal',
+  lunch: 'peanut butter and jelly',
+  dinner: 'mac and cheese'
+}
+*/
+```
+
 ## Массивы
 Из массивов также можно деструктурировать переменные:
 ```javascript
@@ -115,3 +136,37 @@ const [, , thirdAnimal] = ["Horse", "Mouse", "Cat"];
 console.log(thirdAnimal); // Cat
 ```
 
+**Оператор распространения**. Выполняет несколько функций:
+1. Комбинирует массивы
+```javascript
+const peaks = ["Tallac", "Ralston", "Rose"]
+const canyons = ["Ward", "Blackwood"]
+const newArr = [...peaks, ...canyons]
+console.log(newArr); // [ 'Tallac', 'Ralston', 'Rose', 'Ward', 'Blackwood' ]
+```
+2. Получение элемента из массива.
+Применение стандратных средств:
+```javascript
+const peaks = ["Tallac", "Ralston", "Rose"]
+const canyons = ["Ward", "Blackwood"]
+const newArr = [...peaks, ...canyons]
+const [lastElem] = newArr.toReversed(); 
+console.log(lastElem); // Blackwood
+console.log(newArr); // [ 'Tallac', 'Ralston', 'Rose', 'Ward', 'Blackwood' ] - метод toReversed() не изменяет оригинальный массив
+```
+Применение оператора spread:
+```javascript
+const array = ["Tallac", "Ralston", "Rose", "Ward", "Blackwood"];
+const [lastElem] = [...array].reverse();
+console.log(lastElem); // Blackwood
+console.log(array); // [ 'Tallac', 'Ralston', 'Rose', 'Ward', 'Blackwood' ] - метод reverse() меняет оригинальный массив. Но в данном случае этого не произошло.
+```
+3. Получение оставшихся элементов в массиве:
+```javascript
+const array = ["Donner", "Marlette", "Fallen Leaf", "Cascade"];
+const [first, ...others] = array;
+
+console.log(array); // [ 'Donner', 'Marlette', 'Fallen Leaf', 'Cascade' ]
+console.log(first); // Donner
+console.log(others); // [ 'Marlette', 'Fallen Leaf', 'Cascade' ]
+```

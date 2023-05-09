@@ -287,4 +287,55 @@
 // const funHike = { name, elevation, print }
 // funHike.print(); // Mt. Tallac is 9738 feet tall.
 
+// const peaks = ["Tallac", "Ralston", "Rose"]
+// const canyons = ["Ward", "Blackwood"]
+// const newArr = [...peaks, ...canyons]
+// console.log(newArr); // [ 'Tallac', 'Ralston', 'Rose', 'Ward', 'Blackwood' ]
 
+// const [lastElem] = newArr.toReversed(); 
+// console.log(lastElem); // Blackwood
+// console.log(newArr); // [ 'Tallac', 'Ralston', 'Rose', 'Ward', 'Blackwood' ] - метод toReversed() не изменяет оригинальный массив
+
+// const array = ["Tallac", "Ralston", "Rose", "Ward", "Blackwood"];
+// const [lastElem] = [...array].reverse();
+// console.log(lastElem); // Blackwood
+// console.log(array); // [ 'Tallac', 'Ralston', 'Rose', 'Ward', 'Blackwood' ] - метод reverse() меняет оригинальный массив. Но в данном случае этого не произошло.
+
+
+// const array = ["Donner", "Marlette", "Fallen Leaf", "Cascade"];
+// const [first, ...others] = array;
+
+// console.log(array); // [ 'Donner', 'Marlette', 'Fallen Leaf', 'Cascade' ]
+// console.log(first); // Donner
+// console.log(others); // [ 'Marlette', 'Fallen Leaf', 'Cascade' ]
+
+
+// function directions(...args) {
+//   const [start, ...remaining] = args
+//   const [finish, ...stops] = remaining.reverse()
+
+//   console.log(`drive through ${args.length} towns`)
+//   console.log(`start in ${start}`)
+//   console.log(`the destination is ${finish}`)
+//   console.log(`stopping ${stops.length} times in between`)
+// }
+
+// directions("Truckee", "Tahoe City", "Sunnyside", "Homewood", "Tahoma")
+
+const morning = {
+  breakfast: "oatmeal",
+  lunch: "peanut butter and jelly"
+}
+const dinner = "mac and cheese"
+
+const newObj = {
+  ...morning,
+  dinner
+}
+console.log(newObj);
+/* {
+  breakfast: 'oatmeal',
+  lunch: 'peanut butter and jelly',
+  dinner: 'mac and cheese'
+}
+*/
