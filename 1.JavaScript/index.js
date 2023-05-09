@@ -351,36 +351,167 @@
 // const maui = new Vacation("Maui", 7);
 // maui.print(); // Maui | 7 days
 
-class Vacation {
-  constructor(destination, length) {
-    this.destination = destination;
-    this.length = length;
-  }
-  print() {
-    console.log(`${this.destination} | ${this.length} days`)
-  }
-}
+// class Vacation {
+//   constructor(destination, length) {
+//     this.destination = destination;
+//     this.length = length;
+//   }
+//   print() {
+//     console.log(`${this.destination} | ${this.length} days`)
+//   }
+// }
 
-const maui = new Vacation("Maui", 7);
-maui.print(); // Maui | 7 days
+// const maui = new Vacation("Maui", 7);
+// maui.print(); // Maui | 7 days
 
-class Expedition extends Vacation {
-  constructor(destination, length, gear) {
-    super(destination, length);
-    this.gear = gear;
-  }
-  print() {
-    super.print();
-    console.log(`Bring your ${this.gear.join(" and your ")}`);
-  }
-}
-const trip = new Expedition("Mt. Whitney", 3, [
-  "sunglasses",
-  "prayer flags",
-  "camera"
-]);
-trip.print();
+// class Expedition extends Vacation {
+//   constructor(destination, length, gear) {
+//     super(destination, length);
+//     this.gear = gear;
+//   }
+//   print() {
+//     super.print();
+//     console.log(`Bring your ${this.gear.join(" and your ")}`);
+//   }
+// }
+// const trip = new Expedition("Mt. Whitney", 3, [
+//   "sunglasses",
+//   "prayer flags",
+//   "camera"
+// ]);
+// trip.print();
 /*
 Mt. Whitney | 3 days
 Bring your sunglasses and your prayer flags and your camera
 */
+
+
+// const log = function(message) {
+//   console.log(message)
+// }
+// log("Hello"); // Hello
+
+// const logArrow = message => console.log(message);
+// logArrow("Hello"); // Hello
+
+// const logArrow = message => console.log(message);
+// const object = {
+//   message: "Hello, this is object",
+//   log(message) {
+//     console.log(message)
+//   }
+// }
+// object.log("Hello out"); // Hello out
+// object.log(object.message); // Hello, this is object
+
+
+// const messages = [
+//   "Hello 123",
+//   message => console.log(message),
+//   "Hello 321",
+//   message => console.log(message),
+// ]
+// messages[1](messages[0]); // Hello 123
+// messages[1](messages[2]); // Hello 321
+
+// const insideFunc = logger => {
+//   logger("Я внутри функции")
+// }
+// insideFunc(message => console.log(message)); //Я внутри функции
+
+
+// const createScream = function(logger) {
+//   return function(message) {
+//     logger(message.toUpperCase() + "!!!")
+//   }
+// }
+// const scream = createScream(message => console.log(message));
+// scream("hello my friend") // HELLO MY FRIEND!!!
+// console.log(scream);
+
+
+// Пример императивного подхода:
+// const string = "Restaurants in Hanalei";
+// let url = "";
+
+// for (let i = 0; i < string.length; i++) {
+//   if(string[i] === " ") {
+//     url += "-"
+//   } else {
+//     url += string[i]
+//   }
+// }
+
+// console.log(url); // Restaurants-in-Hanalei
+
+// Пример декларативного подхода:
+// const string = "Restaurants in Hanalei";
+// let url = string.replace(/ /g, "-");
+// console.log(url); // Restaurants-in-Hanalei
+
+// const color_lawn = {
+//   title: "lawn",
+//   color: "#00FF00",
+//   rating: 0
+// }
+// function rateColor(color, rating) {
+//   color.rating = rating;
+//   return color;
+// }
+// console.log(rateColor(color_lawn, 5)); // { title: 'lawn', color: '#00FF00', rating: 5 }
+// console.log(color_lawn); // { title: 'lawn', color: '#00FF00', rating: 5 }
+
+// let color_lawn = {
+//   title: "lawn",
+//   color: "#00FF00",
+//   rating: 0
+// }
+// // const rateColor = function (color, rating) {
+// //   return Object.assign({}, color, { rating: rating })
+// // }
+// const rateColor = (color, rating) => ({
+//   ...color,
+//   rating: rating
+// })
+// console.log(rateColor(color_lawn, 5)); // { title: 'lawn', color: '#00FF00', rating: 5 }
+// console.log(color_lawn); // { title: 'lawn', color: '#00FF00', rating: 0 }
+
+// let list = [
+//   { title: "Rad Red" },
+//   { title: "Lawn" },
+//   { title: "Party Pink" }
+// ]
+// const addColor = function(title, colors) {
+//   colors.push({title: title});
+//   return colors;
+// }
+// console.log(addColor("Green", list));
+// console.log(list);
+// /* в обоих случаях
+// [
+//   { title: 'Rad Red' },
+//   { title: 'Lawn' },
+//   { title: 'Party Pink' },
+//   { title: 'Green' }
+// ]
+// Массив изменен.
+// */
+// // изменяем функцию addColor:
+// const addColor = (title, array) => array.concat({ title })
+// console.log(addColor("Green", list));
+// /*
+// [
+//   { title: 'Rad Red' },
+//   { title: 'Lawn' },
+//   { title: 'Party Pink' },
+//   { title: 'Green' }
+// ]
+// */
+// console.log(list); // [ { title: 'Rad Red' }, { title: 'Lawn' }, { title: 'Party Pink' } ] == оригинал не изменен.
+// // можно использовать другой вариант:
+// const addColor = (title, array) => [...array, { title }];
+// console.log(addColor("Green", list));
+// console.log(list);
+// // аналогично - оригинальный массив не был изменен.
+
+

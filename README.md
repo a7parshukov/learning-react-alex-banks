@@ -6,3 +6,5 @@
 * <a href="/1.JavaScript/this.md">this, call(), apply(), bind()</a>
 * <a href="/1.JavaScript/object-array.md">Объекты и массивы</a>
 * <a href="/1.JavaScript/classes.md">Классы</a>
+* <a href="/1.JavaScript/funcProg.md">Функциональное программирование</a>
+* <a href="/1.JavaScript/declarProg.md">Декларативное и императивное программирование</a>
