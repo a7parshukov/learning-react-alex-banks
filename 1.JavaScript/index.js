@@ -322,20 +322,65 @@
 
 // directions("Truckee", "Tahoe City", "Sunnyside", "Homewood", "Tahoma")
 
-const morning = {
-  breakfast: "oatmeal",
-  lunch: "peanut butter and jelly"
-}
-const dinner = "mac and cheese"
+// const morning = {
+//   breakfast: "oatmeal",
+//   lunch: "peanut butter and jelly"
+// }
+// const dinner = "mac and cheese"
 
-const newObj = {
-  ...morning,
-  dinner
-}
-console.log(newObj);
+// const newObj = {
+//   ...morning,
+//   dinner
+// }
+// console.log(newObj);
 /* {
   breakfast: 'oatmeal',
   lunch: 'peanut butter and jelly',
   dinner: 'mac and cheese'
 }
+*/
+
+
+// function Vacation(destination, length) {
+//   this.destination = destination;
+//   this.length = length;
+// };
+// Vacation.prototype.print = function() {
+//   console.log(`${this.destination} | ${this.length} days`)
+// };
+// const maui = new Vacation("Maui", 7);
+// maui.print(); // Maui | 7 days
+
+class Vacation {
+  constructor(destination, length) {
+    this.destination = destination;
+    this.length = length;
+  }
+  print() {
+    console.log(`${this.destination} | ${this.length} days`)
+  }
+}
+
+const maui = new Vacation("Maui", 7);
+maui.print(); // Maui | 7 days
+
+class Expedition extends Vacation {
+  constructor(destination, length, gear) {
+    super(destination, length);
+    this.gear = gear;
+  }
+  print() {
+    super.print();
+    console.log(`Bring your ${this.gear.join(" and your ")}`);
+  }
+}
+const trip = new Expedition("Mt. Whitney", 3, [
+  "sunglasses",
+  "prayer flags",
+  "camera"
+]);
+trip.print();
+/*
+Mt. Whitney | 3 days
+Bring your sunglasses and your prayer flags and your camera
 */
