@@ -8,3 +8,6 @@
 * <a href="/1.JavaScript/classes.md">Классы</a>
 * <a href="/1.JavaScript/funcProg.md">Функциональное программирование</a>
 * <a href="/1.JavaScript/declarProg.md">Декларативное и императивное программирование</a>
+
+2. React
+* <a href="/2.react/hooks.md">Хуки</a>
