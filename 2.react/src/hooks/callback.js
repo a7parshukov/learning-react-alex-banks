@@ -28,9 +28,7 @@ export default function Callback() {
       <button onClick={handleClickCount}>Добавить</button>
       <button onClick={handleClickColor}>Изменить</button>
       <ul>
-        {generateItems.map((i) => (
-          <li>{i}</li>
-        ))}
+
       </ul>
     </>
   )
