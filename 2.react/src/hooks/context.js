@@ -11,7 +11,7 @@ function Form() {
 	)
 }
 
-function Panel({title, children}) {
+function Panel({ title, children }) {
 	const theme = useContext(ThemeContext);
 	const className = `panel-${theme}`
 
@@ -23,7 +23,7 @@ function Panel({title, children}) {
 	)
 }
 
-function Button({children}) {
+function Button({ children }) {
 	const theme = useContext(ThemeContext);
 	const className = `button-${theme}`
 
@@ -37,17 +37,17 @@ function Button({children}) {
 export default function Context() {
 	const [theme, setTheme] = useState("light");
 
-    return (
-        <ThemeContext.Provider value={theme}>
-          <Form />
-					<label>
-						<input 
-							type="checkbox"
-							checked={theme === "dark"}
-							onChange={event => setTheme(event.target.checked ? "dark" : "light")}
-						/>
-						Use DARK mode
-					</label>
-        </ThemeContext.Provider>
-    )
+	return (
+		<ThemeContext.Provider value={theme}>
+			<Form />
+			<label>
+				<input
+					type="checkbox"
+					checked={theme === "dark"}
+					onChange={event => setTheme(event.target.checked ? "dark" : "light")}
+				/>
+				Use DARK mode
+			</label>
+		</ThemeContext.Provider>
+	)
 }

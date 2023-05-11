@@ -515,3 +515,69 @@ Bring your sunglasses and your prayer flags and your camera
 // // аналогично - оригинальный массив не был изменен.
 
 
+// const frederick = {
+//   name: "Frederick Douglass",
+//   canRead: false,
+//   canWrite: false
+// }
+
+// function selfEducate() {
+//   frederick.canRead = true
+//   frederick.canWrite = true
+// }
+
+// selfEducate();
+// console.log(frederick); // { name: 'Frederick Douglass', canRead: true, canWrite: true }
+
+// const  frederick = {
+//   name: "Frederick Douglass",
+//   canRead: false,
+//   canWrite: false
+// }
+
+// const selfEducate = person => ({
+//   ...person,
+//   canRead: true,
+//   canWrite: true
+// })
+
+// console.log(selfEducate(frederick)); // { name: 'Frederick Douglass', canRead: true, canWrite: true }
+// console.log(frederick); // { name: 'Frederick Douglass', canRead: false, canWrite: false }
+
+
+const schools = [
+  "Yorktown",
+  "Washington & Lee",
+  "Wakefield"
+]
+
+// const string = schools.join(", ");
+// console.log(string); // Yorktown, Washington & Lee, Wakefield
+
+// const wSchools = schools.filter(school => school[0] === "W");
+// console.log(wSchools); // [ 'Washington & Lee', 'Wakefield' ]
+
+// const cutSchool = (cut, school) => school.filter(s => s !== cut);
+// console.log(cutSchool("Yorktown", schools)); // [ 'Washington & Lee', 'Wakefield' ]
+// console.log(schools); // [ 'Yorktown', 'Washington & Lee', 'Wakefield' ]
+
+const highSchool = schools.map(elem => `${elem} High School`);
+console.log(highSchool);
+/*
+[
+  'Yorktown High School',
+  'Washington & Lee High School',
+  'Wakefield High School'
+]
+*/
+console.log(schools); // [ 'Yorktown', 'Washington & Lee', 'Wakefield' ]
+
+const objSchool = schools.map(elem => ({ name: elem }));
+console.log(objSchool);
+/*
+[
+  { name: 'Yorktown' },
+  { name: 'Washington & Lee' },
+  { name: 'Wakefield' }
+]
+*/
