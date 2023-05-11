@@ -10,7 +10,7 @@ export default function Context() {
 	const [theme, setTheme] = useState("light");
 
     return (
-        <ThemeContext.Provider value={theme}>
+      <ThemeContext.Provider value={theme}>
           <Form />
 			<label>
 				<input 
