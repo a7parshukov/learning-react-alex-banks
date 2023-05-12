@@ -545,11 +545,11 @@ Bring your sunglasses and your prayer flags and your camera
 // console.log(frederick); // { name: 'Frederick Douglass', canRead: false, canWrite: false }
 
 
-const schools = [
-  "Yorktown",
-  "Washington & Lee",
-  "Wakefield"
-]
+// const schools = [
+//   "Yorktown",
+//   "Washington & Lee",
+//   "Wakefield"
+// ]
 
 // const string = schools.join(", ");
 // console.log(string); // Yorktown, Washington & Lee, Wakefield
@@ -561,8 +561,8 @@ const schools = [
 // console.log(cutSchool("Yorktown", schools)); // [ 'Washington & Lee', 'Wakefield' ]
 // console.log(schools); // [ 'Yorktown', 'Washington & Lee', 'Wakefield' ]
 
-const highSchool = schools.map(elem => `${elem} High School`);
-console.log(highSchool);
+// const highSchool = schools.map(elem => `${elem} High School`);
+// console.log(highSchool);
 /*
 [
   'Yorktown High School',
@@ -570,10 +570,10 @@ console.log(highSchool);
   'Wakefield High School'
 ]
 */
-console.log(schools); // [ 'Yorktown', 'Washington & Lee', 'Wakefield' ]
+// console.log(schools); // [ 'Yorktown', 'Washington & Lee', 'Wakefield' ]
 
-const objSchool = schools.map(elem => ({ name: elem }));
-console.log(objSchool);
+// const objSchool = schools.map(elem => ({ name: elem }));
+// console.log(objSchool);
 /*
 [
   { name: 'Yorktown' },
@@ -581,3 +581,20 @@ console.log(objSchool);
   { name: 'Wakefield' }
 ]
 */
+
+const schools = [
+  { name: 'Yorktown' },
+  { name: 'Stratford'},
+  { name: 'Washington & Lee' },
+  { name: 'Wakefield' }
+]
+
+const editName = (oldName, newName, array) => {
+  array.map(elem => {
+    if(elem === oldName) {
+      
+    } else {
+
+    }
+  })
+}
