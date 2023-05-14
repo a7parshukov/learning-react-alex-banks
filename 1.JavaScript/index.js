@@ -582,19 +582,141 @@ Bring your sunglasses and your prayer flags and your camera
 ]
 */
 
-const schools = [
+// const schools = [
+//   { name: 'Yorktown' },
+//   { name: 'Stratford' },
+//   { name: 'Washington & Lee' },
+//   { name: 'Wakefield' }
+// ]
+// const editName = (oldName, newName, array) =>
+//   array.map(elem => {
+//     if (elem.name === oldName) {
+//       return {
+//         ...elem,
+//         name: newName
+//       }
+//     } else {
+//       return elem
+//     }
+//   })
+
+// const editName = (oldName, newName, array) => 
+//   array.map(elem => (elem.name === oldName) ? { ...elem, name: newName } : elem)
+
+// const newSchools = editName("Stratford", "Woodlawn", schools);
+// console.log(newSchools);
+/*
+[
   { name: 'Yorktown' },
-  { name: 'Stratford'},
+  { name: 'Woodlawn' },
   { name: 'Washington & Lee' },
   { name: 'Wakefield' }
 ]
+*/
+// console.log(schools);
+/*
+[
+  { name: 'Yorktown' },
+  { name: 'Stratford' },
+  { name: 'Washington & Lee' },
+  { name: 'Wakefield' }
+]
+*/
 
-const editName = (oldName, newName, array) => {
-  array.map(elem => {
-    if(elem === oldName) {
-      
-    } else {
 
-    }
-  })
+
+// const schoolsObj = {
+//   "Yorktown": 10,
+//   "Washington & Lee": 2,
+//   "Wakefield": 5
+// }
+
+// const schoolsArr = Object.keys(schoolsObj).map(elem => ({
+//   name: elem,
+//   wins: schoolsObj[elem]
+// }));
+// console.log(schoolsArr);
+/*
+[
+  { name: 'Yorktown', wins: 10 },
+  { name: 'Washington & Lee', wins: 2 },
+  { name: 'Wakefield', wins: 5 }
+]
+*/
+
+
+// const ages = [21, 18, 42, 40, 64, 63, 34];
+
+// const sumAges = ages.reduce((sum, current) => sum + current, 0);
+// console.log(sumAges); // 282 - сумма чисел.
+
+// const maxAges = ages.reduce((max, age) => {
+//   console.log(`${age} > ${max} = ${age > max} `);
+//   if(age > max) {
+//     return age;
+//   } else {
+//     return max;
+//   }
+// }, 0)
+/*
+21 > 0 = true 
+18 > 21 = false 
+42 > 21 = true 
+40 > 42 = false 
+64 > 42 = true 
+63 > 64 = false 
+34 > 64 = false 
+*/
+
+// const maxAges = ages.reduce((max, age) => ((age > max) ? age : max), 0);
+// console.log(maxAges); //64
+
+
+// const colors = [
+//   {
+//     id: '-xekare',
+//     title: "rad red",
+//     rating: 3
+//   },
+//   {
+//     id: '-jbwsof',
+//     title: "big blue",
+//     rating: 2
+//   },
+//   {
+//     id: '-prigbj',
+//     title: "grizzly grey",
+//     rating: 5
+//   },
+//   {
+//     id: '-ryhbhsl',
+//     title: "banana",
+//     rating: 1
+//   }
+// ]
+
+// const hashColors = colors.reduce((hash, {id, title, rating}) => {
+//   hash[id] = {
+//     title,
+//     rating
+//   }
+//   return hash;
+// }, {})
+// console.log(hashColors);
+/*
+{
+  '-xekare': { title: 'rad red', rating: 3 },
+  '-jbwsof': { title: 'big blue', rating: 2 },
+  '-prigbj': { title: 'grizzly grey', rating: 5 },
+  '-ryhbhsl': { title: 'banana', rating: 1 }
 }
+*/
+
+
+const colors = ["red", "red", "green", "blue", "green"];
+
+const uniqueColors = colors.reduce(
+  (unique, color) => 
+    unique.indexOf(color) !== -1 ? unique : [...unique, color], []
+)
+console.log(uniqueColors)

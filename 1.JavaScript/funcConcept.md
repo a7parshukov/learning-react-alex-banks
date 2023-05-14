@@ -184,3 +184,159 @@ console.log(objSchool);
 ]
 */
 ```
+
+4. Работа с массивом объектов:
+```js
+const schools = [
+  { name: 'Yorktown' },
+  { name: 'Stratford' },
+  { name: 'Washington & Lee' },
+  { name: 'Wakefield' }
+]
+const editName = (oldName, newName, array) =>
+  array.map(elem => {
+    if (elem.name === oldName) {
+      return {
+        ...elem,
+        name: newName
+      }
+    } else {
+      return elem
+    }
+  })
+const newSchools = editName("Stratford", "Woodlawn", schools);
+console.log(newSchools);
+/*
+[
+  { name: 'Yorktown' },
+  { name: 'Woodlawn' },
+  { name: 'Washington & Lee' },
+  { name: 'Wakefield' }
+]
+*/
+console.log(schools);
+/*
+[
+  { name: 'Yorktown' },
+  { name: 'Stratford' },
+  { name: 'Washington & Lee' },
+  { name: 'Wakefield' }
+]
+*/
+```
+Итого, оригинальный массив не был изменён. Можно переписать функцию `editName()` и получить тот же результат:
+```js
+const editName = (oldName, newName, array) => 
+  array.map(elem => (elem.name === oldName) ? { ...elem, name: newName } : elem)
+```
+
+5. Преобразовываем объект в массив объектов:
+```js
+const schoolsObj = {
+  "Yorktown": 10,
+  "Washington & Lee": 2,
+  "Wakefield": 5
+}
+
+const schoolsArr = Object.keys(schoolsObj).map(elem => ({
+  name: elem,
+  wins: schoolsObj[elem]
+}));
+console.log(schoolsArr);
+/*
+[
+  { name: 'Yorktown', wins: 10 },
+  { name: 'Washington & Lee', wins: 2 },
+  { name: 'Wakefield', wins: 5 }
+]
+*/
+```
+
+6. Преобразовываем массив в любое значение.
+В примерах ниже вычислим сумму чисел массива и маскимальное значение из массива чисел:
+```js
+const ages = [21, 18, 42, 40, 64, 63, 34];
+
+const sumAges = ages.reduce((sum, current) => sum + current, 0);
+console.log(sumAges); // 282 - сумма чисел.
+
+const maxAges = ages.reduce((max, age) => {
+  console.log(`${age} > ${max} = ${age > max} `);
+  if(age > max) {
+    return age;
+  } else {
+    return max;
+  }
+}, 0)
+/*
+21 > 0 = true 
+18 > 21 = false 
+42 > 21 = true 
+40 > 42 = false 
+64 > 42 = true 
+63 > 64 = false 
+34 > 64 = false 
+*/
+```
+Сокращенная форма функции:
+```js
+const maxAges = ages.reduce((max, age) => ((age > max) ? age : max), 0);
+console.log(maxAges); //64
+```
+
+7. Преобразование массива в объект (хеш?):
+
+```js
+const colors = [
+  {
+    id: '-xekare',
+    title: "rad red",
+    rating: 3
+  },
+  {
+    id: '-jbwsof',
+    title: "big blue",
+    rating: 2
+  },
+  {
+    id: '-prigbj',
+    title: "grizzly grey",
+    rating: 5
+  },
+  {
+    id: '-ryhbhsl',
+    title: "banana",
+    rating: 1
+  }
+]
+
+const hashColors = colors.reduce((hash, {id, title, rating}) => {
+  hash[id] = {
+    title,
+    rating
+  }
+  return hash;
+}, {})
+console.log(hashColors);
+/*
+{
+  '-xekare': { title: 'rad red', rating: 3 },
+  '-jbwsof': { title: 'big blue', rating: 2 },
+  '-prigbj': { title: 'grizzly grey', rating: 5 },
+  '-ryhbhsl': { title: 'banana', rating: 1 }
+}
+*/
+```
+
+8. Превратить массив в другой массив:
+Аналог функционала `array.filter()`:
+```js
+const colors = ["red", "red", "green", "blue", "green"];
+
+const uniqueColors = colors.reduce(
+  (unique, color) => 
+    unique.indexOf(color) !== -1 ? unique : [...unique, color], []
+)
+console.log(uniqueColors); // [ 'red', 'green', 'blue' ]
+```
+Если индекс цвета не найден в текущем массиве (равен -1), то добавляем цвет в массив.
