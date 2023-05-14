@@ -9,6 +9,7 @@
 * <a href="/1.JavaScript/funcProg.md">Функциональное программирование</a>
 * <a href="/1.JavaScript/funcConcept.md">Функциональные концепции</a>
 * <a href="/1.JavaScript/declarProg.md">Декларативное и императивное программирование</a>
+* <a href="/1.JavaScript/exampleConcept.md">*Пример императивного подхода и функционального*</a>
 
 1. React
 * <a href="/2.react/hooks.md">Хуки</a>

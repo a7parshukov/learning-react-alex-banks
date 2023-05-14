@@ -340,3 +340,116 @@ const uniqueColors = colors.reduce(
 console.log(uniqueColors); // [ 'red', 'green', 'blue' ]
 ```
 Если индекс цвета не найден в текущем массиве (равен -1), то добавляем цвет в массив.
+
+
+## Функции высшего порядка
+Функции высшего порядка оперируют функциями "низшего" порядка. Яркий пример был выше - функции `map()`, `reduce()`. 
+Приведем пример в ручную созданной функции высшего порядка:
+```js
+const showWelcome = () => console.log("Welcome!");
+const showUnauthorized = () => console.log("Unauthorized...");
+const invokeIf = (condition, funcTrue, funcFalse) => {
+  condition ? funcTrue() : funcFalse()
+}
+
+invokeIf(true, showWelcome, showUnauthorized); // Welcome!
+invokeIf(false, showWelcome, showUnauthorized); // Unauthorized...
+```
+**Основная суть использования таких функций** это помощь в работе с асинхронным JavaScript.
+
+
+## Рекурсия
+Рекурсия это такой инструмент, который позволяет создать функцию, вызывающую саму себя.
+```js
+const countdown = (value, func) => {
+  func(value);
+  return value > 0 ? countdown(value - 1, func) : value
+}
+countdown(10, value => console.log(value)); // 10...0
+```
+Использовать рекурсию можно для создания таймеров (не забыть про `setTimeout()`), а так же для поиска конкретного значения в большой структуре данных (поиск в каталогах конкретного файла, или, поиск конкретной информации в HTML DOM)
+```js
+const dan = {
+  type: "person",
+  data: {
+    gender: "male",
+    info: {
+      id: 22,
+      fullname: {
+        first: "Dan",
+        last: "Deacon"
+      }
+    }
+  }
+}
+
+const deepPick = (fields, object = {}) => {
+  const [first, ...remaining] = fields.split(".")
+  return remaining.length ? deepPick(remaining.join("."), object[first]) : object[first]
+};
+console.log(deepPick("data.info.fullname.first", dan))
+```
+
+## Композиция
+Композиция определяет последовательность выполнения функций. Можно вызывать функции последовательно (шаг за шагом), а можно создать общую композиционную функцию. 
+
+Создадим функции:
+```js
+const createClockTime = date => ({date})
+
+const appendAMPM = ({date}) => ({
+  date,
+  ampm: (date.getHours() >= 12) ? "PM" : "AM"
+})
+
+const civilianHours = clockTime => {
+  const hours = clockTime.date.getHours();
+  return {
+    ...clockTime,
+    hours: (hours > 12) ? hours - 12 : hours
+  }
+}
+
+const removeDate = clockTime => {
+  let newTime = {...clockTime};
+  delete newTime.date;
+  return newTime
+}
+```
+
+Делаем вызов последовательно:
+```js
+const step1 = createClockTime(new Date());
+console.log(step1);
+const step2 = appendAMPM(step1);
+console.log(step2);
+const step3 = civilianHours(step2);
+console.log(step3);
+const step4 = removeDate(step3);
+console.log(step4);
+/*
+Результаты console.log:
+{ date: 2023-05-14T11:38:57.169Z }
+{ date: 2023-05-14T11:38:57.169Z, ampm: 'PM' }
+{ date: 2023-05-14T11:38:57.169Z, ampm: 'PM', hours: 2 }
+{ ampm: 'PM', hours: 2 }
+*/
+```
+
+При помощи `reduce()` можно сделать последовательный вызов функций внутри одной функции (высшая функция):
+```js
+const compose = (...functions) => 
+  (argument) => 
+    functions.reduce(
+      (composed, func) => func(composed), argument
+    )
+
+const oneFunc = compose(
+  createClockTime,
+  appendAMPM,
+  civilianHours,
+  removeDate
+)
+
+console.log(oneFunc(new Date())); // { ampm: 'PM', hours: 2 }
+```

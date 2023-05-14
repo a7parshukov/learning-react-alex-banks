@@ -713,10 +713,213 @@ Bring your sunglasses and your prayer flags and your camera
 */
 
 
-const colors = ["red", "red", "green", "blue", "green"];
+// const colors = ["red", "red", "green", "blue", "green"];
 
-const uniqueColors = colors.reduce(
-  (unique, color) => 
-    unique.indexOf(color) !== -1 ? unique : [...unique, color], []
-)
-console.log(uniqueColors)
+// const uniqueColors = colors.reduce(
+//   (unique, color) => 
+//     unique.indexOf(color) !== -1 ? unique : [...unique, color], []
+// )
+// console.log(uniqueColors); // [ 'red', 'green', 'blue' ]
+
+
+
+
+// const showWelcome = () => console.log("Welcome!");
+// const showUnauthorized = () => console.log("Unauthorized...");
+// const invokeIf = (condition, funcTrue, funcFalse) => {
+//   condition ? funcTrue() : funcFalse()
+// }
+
+// invokeIf(true, showWelcome, showUnauthorized); // Welcome!
+// invokeIf(false, showWelcome, showUnauthorized); // Unauthorized...
+
+
+// const countdown = (value, func) => {
+//   func(value);
+//   return value > 0 ? countdown(value - 1, func) : value
+// }
+// countdown(10, value => console.log(value)); // 10...0
+
+// const countdown = (value, func, delay = 1000) => {
+//   func(value);
+//   return value > 0 ? setTimeout(() => countdown(value - 1, func, delay), delay) : value
+// }
+// countdown(10, value => console.log(value)); // 10...0
+
+
+// const dan = {
+//   type: "person",
+//   data: {
+//     gender: "male",
+//     info: {
+//       id: 22,
+//       fullname: {
+//         first: "Dan",
+//         last: "Deacon"
+//       }
+//     }
+//   }
+// }
+
+// const deepPick = (fields, object = {}) => {
+//   const [first, ...remaining] = fields.split(".")
+//   return remaining.length ? deepPick(remaining.join("."), object[first]) : object[first]
+// };
+// console.log(deepPick("data.info.fullname.first", dan))
+
+
+// const template = "hh:mm:ss tt";
+// const clockTime = template
+//   .replace("hh", "03")
+//   .replace("mm", "33")
+//   .replace("ss", "33")
+//   .replace("tt", "PM")
+// console.log(clockTime); // 03:33:33 PM
+
+// const createClockTime = date => ({date})
+
+// const appendAMPM = ({date}) => ({
+//   date,
+//   ampm: (date.getHours() >= 12) ? "PM" : "AM"
+// })
+
+// const civilianHours = clockTime => {
+//   const hours = clockTime.date.getHours();
+//   return {
+//     ...clockTime,
+//     hours: (hours > 12) ? hours - 12 : hours
+//   }
+// }
+
+// const removeDate = clockTime => {
+//   let newTime = {...clockTime};
+//   delete newTime.date;
+//   return newTime
+// }
+
+// const step1 = createClockTime(new Date());
+// console.log(step1);
+// const step2 = appendAMPM(step1);
+// console.log(step2);
+// const step3 = civilianHours(step2);
+// console.log(step3);
+// const step4 = removeDate(step3);
+// console.log(step4);
+/*
+Результаты console.log:
+{ date: 2023-05-14T11:38:57.169Z }
+{ date: 2023-05-14T11:38:57.169Z, ampm: 'PM' }
+{ date: 2023-05-14T11:38:57.169Z, ampm: 'PM', hours: 2 }
+{ ampm: 'PM', hours: 2 }
+*/
+
+// const compose = (...functions) => 
+//   (argument) => 
+//     functions.reduce(
+//       (composed, func) => func(composed), argument
+//     )
+
+// const oneFunc = compose(
+//   createClockTime,
+//   appendAMPM,
+//   civilianHours,
+//   removeDate
+// )
+
+// console.log(oneFunc(new Date())); // { ampm: 'PM', hours: 2 }
+
+
+// Часы
+// setInterval(logClockTime, 1000);
+
+// function logClockTime() {
+//   let time = getClockTime();
+//   console.clear();
+//   console.log(time);
+// }
+
+// function getClockTime() {
+//   let date = new Date();
+
+//   let time = {
+//     hours: date.getHours(),
+    // minutes: date.getMinutes(),
+    // seconds: date.getSeconds(),
+    // ampm: "",
+//   }
+
+//   if (time.hours == 12) {
+//     time.ampm = "PM";
+//   } else if (time.hours > 12) {
+//     time.ampm = "PM";
+//     time.hours -= 12;
+//   }
+
+//   if (time.hours < 10) {
+//     time.hours = `0${time.hours}`
+//   }
+
+//   if (time.minutes < 10) {
+//     time.minutes = `0${time.minutes}`
+//   }
+
+//   if (time.seconds < 10) {
+//     time.seconds = `0${time.seconds}`
+//   }
+
+//   return `${time.hours}:${time.minutes}:${time.seconds} ${time.ampm}`
+// }
+
+
+const oneSecond = () => 1000;
+const getCurrentTime = () => new Date();
+const clear = () => console.clear();
+const log = message => console.log(message);
+
+const serializeClockTime = date => ({
+  hours: date.getHours(),
+  minutes: date.getMinutes(),
+  seconds: date.getSeconds(),
+  ampm: "",
+})
+
+const civilianHours = clockTime => ({
+  ...clockTime,
+  hours: clockTime.hours > 12 ? clockTime.hours - 12 : clockTime.hours
+})
+
+const appendAMPM = clockTime => ({
+  ...clockTime,
+  ampm: clockTime.hours >= 12 ? "PM" : "AM"
+})
+
+// Функция, которая передает время в адрес цели - например, в console.log()
+const display = target => time => target(time);
+
+const formatClock = format => time => 
+  format
+    .replace("hh", time.hours)
+    .replace("mm", time.minutes)
+    .replace("ss", time.seconds)
+    .replace("tt", time.ampm)
+
+const prependZero = key => clockTime => ({
+  ...clockTime,
+  key: clockTime[key] < 10 ? `0${clockTime[key]}` : clockTime[key]
+})
+
+const compose = (...functions) => 
+  (argument) => 
+    functions.reduce(
+      (composed, func) => func(composed), argument
+    )
+
+const convertToCivilianTime = clockTime => 
+  compose(appendAMPM, civilianHours)(clockTime);
+
+const doubleDigits = civilianTime => 
+    compose(prependZero("hours"), prependZero("minutes"), prependZero("seconds"))(civilianTime);
+
+const startTicking = () => setInterval(compose(clear, getCurrentTime, serializeClockTime, convertToCivilianTime, doubleDigits, formatClock("hh:mm:ss tt"), display(log)), oneSecond())
+
+startTicking()
