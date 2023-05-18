@@ -12,4 +12,5 @@
 * <a href="/1.JavaScript/exampleConcept.md">*Пример императивного подхода и функционального*</a>
 
 1. React
+* <a href="/2.react/begining.md">Основы</a>
 * <a href="/2.react/hooks.md">Хуки</a>
