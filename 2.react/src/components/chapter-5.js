@@ -6,7 +6,4 @@ function Ch5() {
   )
 }
 
-
-
-
 export default Ch5;
