@@ -4,10 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+function Cat({name}) {
+  return(
+    <>
+      <h1>The cat`s name is {name}</h1>
+      <p>He is good</p>
+    </>
+  )
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Cat name="Jungle" />
   </React.StrictMode>
 );
 

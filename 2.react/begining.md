@@ -42,3 +42,26 @@ ReactDOM.render(
 )
 ```
 
+Обертка для тегов React выглядит следующим образом:
+```js
+function Cat({name}) {
+  return(
+    <React.Fragment>
+      <h1>The cat`s name is {name}</h1>
+      <p>He is good</p>
+    </React.Fragment>
+  )
+}
+```
+Без `React.Fragment` в приложении будут ошибки.
+Сокращенная версия для `Fragment`: 
+```js
+function Cat({name}) {
+  return(
+    <>
+      <h1>The cat`s name is {name}</h1>
+      <p>He is good</p>
+    </>
+  )
+}
+```
