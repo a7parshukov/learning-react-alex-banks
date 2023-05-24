@@ -5,9 +5,7 @@ function IngredientsList({ list }) {
 	return (
 		<ul>
 			{list.map((ingredient, i) => (
-				<li key={i}>
-					{ingredient.name}
-				</li>
+				<Ingredient key={i} />
 			))}
 		</ul>
 	)
