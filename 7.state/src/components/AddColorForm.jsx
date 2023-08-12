@@ -1,30 +1,29 @@
 import React, { useState } from "react";
+import { useInput } from "../hooks/useInput";
 
 const AddColorForm = ({ onNewColor = f => f }) => {
-  const [txtTitle, setTxtTitle] = useState("");
-  const [hexColor, setHexColor] = useState("#000000");
+  const [txtTitle, setTxtTitle] = useInput("");
+  const [hexColor, setHexColor] = useInput("#000000");
 
-  const submit = e => {
-    e.preventDefault();
-    onNewColor(txtTitle, hexColor);
-    setTxtTitle("");
-    setHexColor("#000000");
+  const submit = event => {
+    event.preventDefault();
+    onNewColor(titleProps.value, colorProps.value);
+    resetTitle();
+    resetColor();
   }
 
   return (
     <>
       <form onSubmit={submit}>
         <input
+          {...titleProps}
           type="text"
-          value={txtTitle}
-          onChange={event => setTxtTitle(event.target.value)}
           placeholder="color title..."
           required
         />
         <input
+          {...colorProps}
           type="color"
-          value={hexColor}
-          onChange={event => setHexColor(event.target.value)}
           required
         />
         <button>
