@@ -3,6 +3,41 @@
 import { GitHubUser } from "./GitHubUser"
 // import { ReactWindow } from "./list/ReactWindow";
 
+import { GraphQLClient} from "graphql-request";
+
+// GraphQL:
+const query = `
+  query findRepos($login: String!) {
+    user(login: $login) {
+      login
+      name
+      location
+      avatar_url: avatarUrl
+      repositories(first:100) {
+        totalCount
+        nodes {
+          name
+        }
+      }
+    }
+  }
+`;
+
+const client = new GraphQLClient(
+  "https://api.github.com/graphql",
+  {
+    headers: {
+      Authorization: `Bearer <PERSONAL_ACCESS_TOKEN>`
+    }
+  }
+);
+
+client
+  .request(query, {login: "moontahoe"})
+  .then(results => JSON.stringify(results, null, 2))
+  .then(console.log)
+  .catch(console.error);
+
 function App() {
 
   // запрос данных (API GitHub)
